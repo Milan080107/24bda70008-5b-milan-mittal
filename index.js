@@ -16,12 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.send("Student Experiment Backend Running");
-});
-
 app.use("/students", studentRoutes);
 app.use("/view", studentViewRoutes);
+
+app.get("/", (req, res) => {
+  res.redirect("/view/students");
+});
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on port ${process.env.PORT}`)
